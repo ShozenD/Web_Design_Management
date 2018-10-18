@@ -1,1 +1,4 @@
-console.log('Hello World');
+var greet = require('./greet')
+
+greet.english();
+greet.spanish();
