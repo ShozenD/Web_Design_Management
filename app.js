@@ -10,9 +10,9 @@ app.get('/hikes', hike.index);
 app.post('/add_hike', hike.add_hike);
 
 //Store all HTML files in view folder.
-app.use(express.static(path.join(__dirname + '/View')));
+app.use(express.static(__dirname + '/View'));
 //Store all JS and CSS in Scripts folder.
-app.use(express.static(path.join(__dirname + '/Script')));
+app.use(express.static(__dirname + '/Script'));
 
 app.get('/', function(req, res){
   res.sendFile('index.html');
