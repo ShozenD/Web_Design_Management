@@ -1,30 +1,27 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var hike = require('./routes/hike');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
 app.get('/hikes', hike.index);
 app.post('/add_hike', hike.add_hike);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//Store all HTML files in view folder.
+app.use(express.static(path.join(__dirname + 'View')));
+//Store all JS and CSS in Scripts folder.
+app.use(express.static(path.join(__dirname + 'Script')));
+
+app.get('/', function(req, res){
+  res.sendFile('index.html');
+});
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//  app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
