@@ -15,6 +15,10 @@ app.get('/', function(req, res){
   //It will find and locate index.html from View of Scripts
 });
 
+app.get('/testform', function(req, res){
+  res.sendFile('testform.html');
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
