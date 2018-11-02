@@ -16,7 +16,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/testform', function(req, res){
-  res.sendFile('testform.html');
+  res.send('testform');
 });
 
 app.use(logger('dev'));
