@@ -15,9 +15,29 @@ app.get('/', function(req, res){
   //It will find and locate index.html from View of Scripts
 });
 
-app.get('/testform', function(req, res){
-  res.send('testform');
+app.get('/testform', function(req, res, next){
+
+  var options = {
+    root: __dirname + '/View/',
+    dotfiles: 'deny',
+    headers: {
+      'x-timestamp': Date.now(),
+      'x-sent': true
+    }
+  };
+
+  var fileName = 'testform.html';
+  res.sendFile(fileName, options, function(err){
+    if(err){
+      next(err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
 });
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
