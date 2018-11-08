@@ -24,18 +24,6 @@ var connection = mysql.createConnection({
   port     : process.env.RDS_PORT
 });
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
-
-  console.log('Connected to database.');
-});
-
-connection.end();
-
-
 // Send Testform
 app.get('/testform', function(req, res, next){
 
