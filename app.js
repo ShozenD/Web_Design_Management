@@ -15,15 +15,6 @@ app.get('/', function(req, res){
   //It will find and locate index.html from View of Scripts
 });
 
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-  host     : process.env.RDS_HOSTNAME,
-  user     : process.env.RDS_USERNAME,
-  password : process.env.RDS_PASSWORD,
-  port     : process.env.RDS_PORT
-});
-
 // Send Testform
 app.get('/testform', function(req, res, next){
 
@@ -45,9 +36,6 @@ app.get('/testform', function(req, res, next){
     }
   });
 });
-
-
-
 
 app.use(logger('dev'));
 app.use(express.json());
