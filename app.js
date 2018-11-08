@@ -10,31 +10,10 @@ app.use(express.static(__dirname + '/View'));
 //Store all JS and CSS in Scripts folder
 app.use(express.static(__dirname + '/Script'));
 
+//Sent Main Page 
 app.get('/', function(req, res){
   res.sendFile('index.html');
   //It will find and locate index.html from View of Scripts
-});
-
-// Send Testform
-app.get('/testform', function(req, res, next){
-
-  var options = {
-    root: __dirname + '/View/',
-    dotfiles: 'deny',
-    headers: {
-      'x-timestamp': Date.now(),
-      'x-sent': true
-    }
-  };
-
-  var fileName = 'testform.html';
-  res.sendFile(fileName, options, function(err){
-    if(err){
-      next(err);
-    } else {
-      console.log('Sent:', fileName);
-    }
-  });
 });
 
 app.use(logger('dev'));
