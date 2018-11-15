@@ -1,40 +1,21 @@
-var createError = require('http-errors');
+// Import express and create application instance.
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
 var app = express();
-//Store all HTML files in view folder. 
-app.use(express.static(__dirname + '/View'));
-//Store all JS and CSS in Scripts folder
-app.use(express.static(__dirname + '/Script'));
+// MongoDB
+var mongoose = require('mongoose');
+var config = require('./config');
+// Import controllers
+var setupController = require('./controllers/setupController');
+var apiController = require('./controllers/apiController');
 
-//Sent Main Page 
-app.get('/', function(req, res){
-  res.sendFile('index.html');
-  //It will find and locate index.html from View of Scripts
-});
+var port = process.env.PORT || 3000; 
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use('/assets', express.static(__dirname + 'public'));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.set('veiw engine', 'ejs');
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
+setupController(app);
+apiController(app);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+app.listen(port);
