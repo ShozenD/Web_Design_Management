@@ -38,4 +38,16 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// My App
+// MongoDB
+var mongoose = require('mongoose');
+var config = require('./config');
+// Import controllers
+var setupController = require('./controllers/setupController');
+var apiController = require('./controllers/apiController');
+
+mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
+setupController(app);
+apiController(app);
+
 module.exports = app;
