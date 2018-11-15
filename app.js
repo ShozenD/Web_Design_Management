@@ -1,30 +1,26 @@
-// Import express and create application instance.
+var createError = require('http-errors');
 var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+
 var app = express();
-// MongoDB
-var mongoose = require('mongoose');
-var config = require('./config');
-// Import controllers
-var setupController = require('./controllers/setupController');
-var apiController = require('./controllers/apiController');
 
-app.use('/assets', express.static(__dirname + 'public'));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-app.set('veiw engine', 'ejs');
-
-mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
-
-
-// Set up controllers
-setupController(app);
-apiController(app);
-
-
-// Default Express Config
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,4 +38,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port);
+module.exports = app;
