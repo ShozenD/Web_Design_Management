@@ -24,12 +24,7 @@ module.exports = function(app){
             sex: req.body.sex,
             school: req.body.school,
             grade: req.body.grade,
-            comments: [{
-                date: Date.now(),
-                body: req.body.comments[0].body,
-                hw: req.body.comments[0].hw,
-                comments: req.body.comments[0].comments
-            }]
+            comments: []
         });
         newStudent.save(function(err) {
             if (err) throw err;
