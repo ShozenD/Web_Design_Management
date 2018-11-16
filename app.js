@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,15 +9,18 @@ var config = require('./config');
 var setupController = require('./controllers/setupController');
 var apiController = require('./controllers/apiController');
 
-//var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-
+// Initialize application instance
 var app = express();
 
+// Enable CORS(security)
+app.use(cors());
+
+// MongoDB setup
 mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
+
+// Controller
 setupController(app);
 apiController(app);
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
