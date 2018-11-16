@@ -1,5 +1,6 @@
 var Records = require('../models/recordsModel');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 module.exports = function(app){
 
@@ -17,6 +18,7 @@ module.exports = function(app){
     });
 
     // Add student
+    app.options('/api/records/add_student', cors()) // enable pre-flight request for POST request
     app.post('/api/records/add_student', function(req, res) {
         
         var newStudent = Records({
