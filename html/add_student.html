@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Adding Students to the Database</title>
+
+    <script type='text/JavaScript'>
+        function add_student(){
+            // create new student object
+            const url = "http://globalengishstudentrecord.us-east-2.elasticbeanstalk.com/api/records/add_student" 
+            var newStudent = {
+                name: document.getElementById('std_name').value,
+                sex: document.getElementById('gender').value,
+                school: document.getElementById('school').value,
+                grade: Number(document.getElementById('grade').value)
+            };
+            postData(url, newStudent);
+        }
+
+        function postData(url, data){
+          return fetch(url, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(data)
+          }).then(response => console.log(response));
+        }
+    </script>
+
+  </head>
+  <body>
+    <h1>Adding Students To the Database</h1>
+    <form>
+        <div class="form-group">
+          <label for="std_name">Student Name</label>
+          <input class="form-control" id="std_name" aria-describedby="emailHelp" placeholder="Enter Name">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your private information with anyone else!</small>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select class="form-control" id="gender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="school">School Name</label>
+            <input class="form-control" id="school" placeholder="School Name">
+        </div>
+        <div class="form-group">
+          <label for="grade">Grade</label>
+          <select class="form-control" id="grade">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </select>
+        </div>
+
+
+        <input type="button" class="btn btn-primary" value="Submit" onclick="add_student();"/>
+    </form>
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
