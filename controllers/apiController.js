@@ -45,7 +45,7 @@ module.exports = function(app){
     });
 
     // Get class records
-    app.get('/api/records/get_recs/:name', function(req, res) {
+    app.get('/api/records/get_recs/:name', cors(), function(req, res) {
 
         Records.find({ name: req.params.name }, function(err, rec){
             if (err) throw err;
