@@ -73,11 +73,18 @@
             <option>12</option>
           </select>
         </div>
-
-
         <input type="button" class="btn btn-primary" value="Submit" onclick="add_student();"/>
     </form>
 
+    <div>
+        <h5>説明 Explanation</h5>
+        <p>このフォームを使って、新しい生徒をデータベースに追加することができます。情報欄を記入して、Submitボタンを押すと、データはまず
+          辞書型オブジェクト(記入したデータを格納した箱とでも考えてください)に変換され、その後JSON(JavaScriptObjectNotation)に変換されます。
+          インターネットを通してデータを送信するときに使うHTTP Postメソッドというものがあり、作成したAPI(Application Programming Interface)
+          と併用してサーバーにデータを送信します。送信後はサーバーがデータベースとやりとりをして、データをデータベースに保存します。詳しいJavaScriptの
+          プログラミングはScriptタグに囲まれているセクションを参照して見てください。
+        </p>
+      </div>
     
 
     <!-- Optional JavaScript -->

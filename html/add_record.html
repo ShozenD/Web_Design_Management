@@ -17,6 +17,7 @@
 
             // create new student object
             var newRecord = {
+                date: document.getElementById('date').value,
                 body: document.getElementById('body').value,
                 hw: document.getElementById('hw').value,
                 comments: document.getElementById('comments').value
@@ -39,25 +40,43 @@
 
   </head>
   <body>
-    <h1>Add Records</h1>
+    <h1>授業記録の追加 Add Records</h1>
     <form>
         <div class="form-group">
-          <label>Student Name</label>
+          <label>生徒氏名 Student Name</label>
+          <label>以下に生徒の氏名を入力してください</label><br>
+          <label>Plase enter the first name and last name of the student</label><br>
+          <label>名 First Name</label>
           <input class="form-control" id="first" aria-describedby="emailHelp" placeholder="First Name">
+          <label>氏 Last Name</label>
           <input class="form-control" id="last" aria-describedby="emailHelp" placeholder="Last Name">
           <small id="emailHelp" class="form-text text-muted">We'll never share your private information with anyone else!</small>
         </div>
         <div class="form-group">
-          <label for="body">Body</label>
+            <label for="date">授業日 Date</label>
+            <input class="form-control" id="date" aria-describedby="emailHelp" placeholder="2018/11/28">
+          </div>
+        <div class="form-group">
+          <label for="body">授業内容 Class Info</label>
           <input class="form-control" id="body" aria-describedby="emailHelp" placeholder="Body">
         </div>
         <div class="form-group">
-            <label for="hw">HW</label>
+            <label for="hw">宿題 HW</label>
             <input class="form-control" id="hw" aria-describedby="emailHelp" placeholder="HW">
         </div>
         <div class="form-group">
-            <label for="comments">Comments</label>
+            <label for="comments">コメント Comments</label>
             <input class="form-control" id="comments" aria-describedby="emailHelp" placeholder="Comments">
         </div>
         <input type="button" class="btn btn-primary" value="Submit" onclick="add_record();"/>
     </form>
+    <div>
+      <h5>説明 Explanation</h5>
+      <p>このフォームを使って、既存の生徒授業情報を追加することができます。情報欄を記入して、Submitボタンを押すと、データはまず
+        辞書型オブジェクト(記入したデータを格納した箱とでも考えてください)に変換され、その後JSON(JavaScriptObjectNotation)に変換されます。
+        インターネットを通してデータを送信するときに使うHTTP Postメソッドというものがあり、作成したAPI(Application Programming Interface)
+        と併用してサーバーにデータを送信します。送信後はサーバーがデータベースとやりとりをして、データをデータベースに保存します。詳しいJavaScriptの
+        プログラミングはScriptタグに囲まれているセクションを参照して見てください。
+      </p>
+    </div>
+</body>
