@@ -11,7 +11,7 @@ module.exports = function(app) {
                     first_kanji: '暁然', 
                     last_kanji: '段',
                     first_katakana: 'ショウゼン',
-                    last_kanji: 'ダン'
+                    last_katakana: 'ダン'
                 },
                 school: 'Keio University',
                 grade: 2,
@@ -27,7 +27,7 @@ module.exports = function(app) {
                     first_kanji: '霞', 
                     last_kanji: '段',
                     first_katakana: 'カスミ',
-                    last_kanji: 'ダン'
+                    last_katakana: 'ダン'
                 },
                 school: 'Tokyo Metropolitan University',
                 grade: 4,
