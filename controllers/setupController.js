@@ -7,8 +7,12 @@ module.exports = function(app) {
         // seed database
         var starterRecords = [
             {
-                name: 'Shozen Dan',
-                sex: 'Male',
+                name: {
+                    first_kanji: '暁然', 
+                    last_kanji: '段',
+                    first_katakana: 'ショウゼン',
+                    last_kanji: 'ダン'
+                },
                 school: 'Keio University',
                 grade: 2,
                 comments: [{
@@ -19,8 +23,12 @@ module.exports = function(app) {
                 }]
             },
             {
-                name: 'Kasumi Dan',
-                sex: 'Female',
+                name: {
+                    first_kanji: '霞', 
+                    last_kanji: '段',
+                    first_katakana: 'カスミ',
+                    last_kanji: 'ダン'
+                },
                 school: 'Tokyo Metropolitan University',
                 grade: 4,
                 comments: [{

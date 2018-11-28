@@ -12,7 +12,10 @@ module.exports = function(app){
 
         Records.find({ name: req.params.name },
             function(err, rec) {
-                if (err) throw err;
+                if (err) {
+                    res.send('Cannot Find Student');
+                    throw err;
+                };
                 res.send(rec);
             });
     });
@@ -28,6 +31,7 @@ module.exports = function(app){
             grade: req.body.grade,
             comments: []
         });
+        
         newStudent.save(function(err) {
             if (err) throw err;
 
@@ -48,7 +52,10 @@ module.exports = function(app){
     app.get('/api/records/get_recs/:name', cors(), function(req, res) {
 
         Records.find({ name: req.params.name }, function(err, rec){
-            if (err) throw err;
+            if (err) {
+                res.send('Cannot Find Student');
+                throw err;
+            }
             res.send(rec[0].comments);
         });
     });
@@ -57,7 +64,7 @@ module.exports = function(app){
     app.post('/api/records/add_rec/:name', function(req, res) {
         
         var newRecord = {
-            date: Date.now(),
+            date: Date.parse(req.body.date),
             body: req.body.body,
             hw: req.body.hw,
             comments: req.body.comments
