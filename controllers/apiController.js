@@ -8,9 +8,9 @@ module.exports = function(app){
     app.use(bodyParser.urlencoded({ extended: true }));
 
     // Get records by name
-    app.get('/api/records/:name', function(req, res){
+    app.get('/api/records/', function(req, res){
 
-        Records.find({ name: req.params.name },
+        Records.find({ name: req.body.name },
             function(err, rec) {
                 if (err) {
                     res.send('Cannot Find Student');
