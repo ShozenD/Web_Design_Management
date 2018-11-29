@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Get Student Info</title>
+  </head>
+  <body>
+    <h3>Get Student Info</h3>
+    <input type="text" placeholder="First Name" id="first"/>
+    <input type="text" placeholder="Last Name" id="last"/>
+    <input type="button" onclick="getStudentInfo();" value="Get Info"/>
+    <div id="info"></div>
+    <script type="text/JavaScript">
+        function getStudentInfo(){
+            var url = "http://globalengishstudentrecord.us-east-2.elasticbeanstalk.com/api/records/" + 
+                      document.getElementById('first').value + "%20" + document.getElementById('last').value;
+            fetch(url)
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(myJson){
+                    // Log results to console
+                    console.log(JSON.stringify(myJson));
+                    // Display results to HTML
+                    document.getElementById('info').innerHTML = 
+                    "<p>ID: " + myJson[0]['_id'] + "</p></n>" + 
+                    "<p>Name: " + myJson[0]['name'] + "</p></n>" +
+                    "<p>Sex: " + myJson[0]['sex'] + "</p></n>" +
+                    "<p>School: " + myJson[0]['school'] + "</p></n>" +
+                    "<p>Grade: " + myJson[0]['grade'] + "</p></n>";
+                });
+        }
+    </script>
+    <div>
+        <h5>説明 Explanation</h5>
+        <p>以上のフォームに生徒氏名を入力すると、既存の生徒情報を取得することができます。インターネットを通してデータを取得するときに使うHTTP Getメソッドというものがあり、
+        作成したAPI(Application Programming Interface)と併用してサーバーからデータが送信されます。詳しいJavaScriptのプログラミングはScriptタグに囲まれているセクションを参照して見てください。
+        </p>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
