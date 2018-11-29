@@ -12,7 +12,7 @@
     <script type="text/JavaScript">
         function getStudentInfo(){
             var url = "http://globalengishstudentrecord.us-east-2.elasticbeanstalk.com/api/records/" + 
-                      document.getElementById('fnamekatakana').value + "-" + "%20" + document.getElementById('lnamekatakana').value;
+                      document.getElementById('fnamekatakana').value + "-" + document.getElementById('lnamekatakana').value;
             fetch(url)
                 .then(function(response){
                     return response.json();
@@ -32,8 +32,8 @@
   </head>
   <body>
     <h3>Get Student Info</h3>
-    <input type="text" placeholder="セイ" id="fnamekatakana"/>
-    <input type="text" placeholder="メイ" id="lnamekatakana"/>
+    <input type="text" placeholder="メイ" id="fnamekatakana"/>
+    <input type="text" placeholder="セイ" id="lnamekatakana"/>
     <input type="button" onclick="getStudentInfo();" value="Get Info"/>
     <div id="info"></div>
     <div>
