@@ -50,10 +50,10 @@ module.exports = function(app){
         });
     });
 
-    // Get class records
-    app.get('/api/records/get_recs/', cors(), function(req, res) {
+    // Get class records by name
+    app.get('/api/records/get_recs/:fnamekatakana-:lnamekatakana', cors(), function(req, res) {
 
-        Records.find({ $and: [{first_katakana: req.body.first_katakana, last_katakana: req.body.last_katakana}] }, function(err, rec){
+        Records.find({ $and: [{first_katakana: req.params.fnamekatakana, last_katakana: req.params.lnamekatakana}] }, function(err, rec){
             if (err) {
                 res.send('Cannot Find Student');
                 throw err;

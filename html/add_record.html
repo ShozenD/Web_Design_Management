@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/add_student.css">
 
     <title>Add Records</title>
 
@@ -38,45 +39,49 @@
           }).then(response => console.log(response));
         }
     </script>
-
   </head>
   <body>
-    <h1>授業記録の追加 Add Records</h1>
-    <form>
-        <div class="form-group">
-          <label>生徒氏名 Student Name</label>
-          <label>生徒氏名を入力してください</label><br>
-          <label></label><br>
-          <label>セイ</label>
-          <input class="form-control" id="fnamekatakana" aria-describedby="emailHelp" placeholder="セイ">
-          <label>メイ</label>
-          <input class="form-control" id="lnamekatakana" aria-describedby="emailHelp" placeholder="メイ">
+    <header>
+        <h1>Add Records 授業記録の追加</h1>
+    </header>
+   
+    <div class='bg'>
+      <form action="/action_page.php">
+
+        <!--名前入力-->
+        <label>Student Name</label><br>
+        <input type="text" id="lnamekatakana" placeholder="セイ"><br>
+        <input type="text" id="fnamekatakana" placeholder="メイ">
+        
+        <!--日付入力-->
+        <label for="date">Date</label>
+        <input type="text" id="date" placeholder="2018/11/28">
+
+        <!--授業内容入力-->
+        <label for="body">Class Info</label>
+        <input type="text" id="body" placeholder="Body">
+
+        <!--宿題入力-->
+        <label for="hw">Home Work</label>
+        <input type="text" id="hw" placeholder="HW">
+
+        <!--コメント入力-->
+        <label for="comments">コメント Comments</label>
+        <input type="text" id="comments" placeholder="Comments">
+
+        <input alignt="center" type="Save" value="Submit" onclick="add_record();"/>
+        <div>
+            <label>Explanation</label>
+            <p type="text">このフォームを使って、既存の生徒授業情報を追加することができます。情報欄を記入して、Submitボタンを押すと、データはまず
+              辞書型オブジェクト(記入したデータを格納した箱とでも考えてください)に変換され、その後JSON(JavaScriptObjectNotation)に変換されます。
+              インターネットを通してデータを送信するときに使うHTTP Postメソッドというものがあり、作成したAPI(Application Programming Interface)
+              と併用してサーバーにデータを送信します。送信後はサーバーがデータベースとやりとりをして、データをデータベースに保存します。詳しいJavaScriptの
+              プログラミングはScriptタグに囲まれているセクションを参照して見てください。
+            </p>
         </div>
-        <div class="form-group">
-            <label for="date">授業日 Date</label>
-            <input class="form-control" id="date" aria-describedby="emailHelp" placeholder="2018/11/28">
-          </div>
-        <div class="form-group">
-          <label for="body">授業内容 Class Info</label>
-          <input class="form-control" id="body" aria-describedby="emailHelp" placeholder="Body">
-        </div>
-        <div class="form-group">
-            <label for="hw">宿題 HW</label>
-            <input class="form-control" id="hw" aria-describedby="emailHelp" placeholder="HW">
-        </div>
-        <div class="form-group">
-            <label for="comments">コメント Comments</label>
-            <input class="form-control" id="comments" aria-describedby="emailHelp" placeholder="Comments">
-        </div>
-        <input type="button" class="btn btn-primary" value="Submit" onclick="add_record();"/>
-    </form>
-    <div>
-      <h5>説明 Explanation</h5>
-      <p>このフォームを使って、既存の生徒授業情報を追加することができます。情報欄を記入して、Submitボタンを押すと、データはまず
-        辞書型オブジェクト(記入したデータを格納した箱とでも考えてください)に変換され、その後JSON(JavaScriptObjectNotation)に変換されます。
-        インターネットを通してデータを送信するときに使うHTTP Postメソッドというものがあり、作成したAPI(Application Programming Interface)
-        と併用してサーバーにデータを送信します。送信後はサーバーがデータベースとやりとりをして、データをデータベースに保存します。詳しいJavaScriptの
-        プログラミングはScriptタグに囲まれているセクションを参照して見てください。
-      </p>
+      </form>
     </div>
-</body>
+    
+    <footer>Global Eigo</footer>
+  </body>
+</html>
