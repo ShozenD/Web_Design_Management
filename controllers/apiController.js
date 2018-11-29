@@ -25,10 +25,10 @@ module.exports = function(app){
     app.post('/api/records/add_student', function(req, res) {
         
         var newStudent = Records({
-            first_kanji,
-            last_kanji,
-            first_katakana,
-            last_katakana,
+            first_kanji: req.body.first_kanji,
+            last_kanji: req.body.last_kanji,
+            first_katakana: req.body.first_katakana,
+            last_katakana: req.body.last_katakana,
             school: req.body.school,
             grade: req.body.grade,
             comments: []
