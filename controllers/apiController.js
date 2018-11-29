@@ -10,7 +10,7 @@ module.exports = function(app){
     // Get records by name
     app.get('/api/records/', function(req, res){
 
-        Records.find({ first_katakana: req.body.first_kanji, last_kanji: req.body.last_kanji },
+        Records.find({ first_kanji: req.body.first_kanji, last_kanji: req.body.last_kanji },
             function(err, rec) {
                 if (err) {
                     res.send('Cannot Find Student');
