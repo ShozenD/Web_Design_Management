@@ -10,7 +10,7 @@ module.exports = function(app){
     // Get records by name
     app.get('/api/records/', function(req, res){
 
-        Records.find({ name: req.body.name },
+        Records.find({ first_katakana: req.body.first_kanji, last_kanji: req.body.last_kanji },
             function(err, rec) {
                 if (err) {
                     res.send('Cannot Find Student');
@@ -25,8 +25,12 @@ module.exports = function(app){
     app.post('/api/records/add_student', function(req, res) {
         
         var newStudent = Records({
-            name: req.body.name,
-            sex: req.body.sex,
+            name: {
+                first_kanji,
+                last_kanji,
+                first_katakana,
+                last_katakana
+            },
             school: req.body.school,
             grade: req.body.grade,
             comments: []
@@ -49,9 +53,9 @@ module.exports = function(app){
     });
 
     // Get class records
-    app.get('/api/records/get_recs/:name', cors(), function(req, res) {
+    app.get('/api/records/get_recs/', cors(), function(req, res) {
 
-        Records.find({ name: req.params.name }, function(err, rec){
+        Records.find({ name: {first_katakana: req.body.first_kanji, last_kanji: req.body.last_kanji} }, function(err, rec){
             if (err) {
                 res.send('Cannot Find Student');
                 throw err;
@@ -70,7 +74,7 @@ module.exports = function(app){
             comments: req.body.comments
         }
 
-        Records.findOneAndUpdate({ name: req.params.name }, { $push: {comments: newRecord }}, function(err) {
+        Records.findOneAndUpdate({ name: {first_katakana: req.body.first_kanji, last_kanji: req.body.last_kanji} }, { $push: {comments: newRecord }}, function(err) {
             if (err) throw err;
             res.send('Success');
         });

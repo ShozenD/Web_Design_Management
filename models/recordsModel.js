@@ -4,12 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; 
 
 var recordsSchema = new Schema({
-    name: {
-        first_kanji: String, 
-        last_kanji: String,
-        first_katakana: String,
-        last_katakana: String
-    },
+    first_kanji: String, 
+    last_kanji: String,
+    first_katakana: String,
+    last_katakana: String,
     school: String,
     grade: Number,
     comments: [{

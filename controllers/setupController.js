@@ -7,12 +7,10 @@ module.exports = function(app) {
         // seed database
         var starterRecords = [
             {
-                name: {
-                    first_kanji: '暁然', 
-                    last_kanji: '段',
-                    first_katakana: 'ショウゼン',
-                    last_katakana: 'ダン'
-                },
+                first_kanji: '暁然', 
+                last_kanji: '段',
+                first_katakana: 'ショウゼン',
+                last_katakana: 'ダン',
                 school: 'Keio University',
                 grade: 2,
                 comments: [{
@@ -23,12 +21,10 @@ module.exports = function(app) {
                 }]
             },
             {
-                name: {
-                    first_kanji: '霞', 
-                    last_kanji: '段',
-                    first_katakana: 'カスミ',
-                    last_katakana: 'ダン'
-                },
+                first_kanji: '霞', 
+                last_kanji: '段',
+                first_katakana: 'カスミ',
+                last_katakana: 'ダン',
                 school: 'Tokyo Metropolitan University',
                 grade: 4,
                 comments: [{
