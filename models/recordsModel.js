@@ -9,7 +9,7 @@ var recordsSchema = new Schema({
     first_katakana: String,
     last_katakana: String,
     school: String,
-    grade: Number,
+    grade: String,
     comments: [{
         date: Date,
         body: String,
