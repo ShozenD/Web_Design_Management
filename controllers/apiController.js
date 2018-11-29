@@ -8,9 +8,9 @@ module.exports = function(app){
     app.use(bodyParser.urlencoded({ extended: true }));
 
     // Get records by name
-    app.get('/api/records/', function(req, res){
+    app.get('/api/records/:fnamekatakana-:lnamekatakana', function(req, res){
 
-        Records.find({ $and: [{ first_katakana: req.body.first_katakana }, {last_katakana: req.body.last_katakana}] },
+        Records.find({ $and: [{ first_katakana: req.params.fnamekatakana }, {last_katakana: req.params.lnamekatakana}] },
             function(err, rec) {
                 if (err) {
                     res.send('Cannot Find Student');
