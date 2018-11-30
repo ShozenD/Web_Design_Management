@@ -1,8 +1,99 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Yantramanav', sans-serif;
+
+
 }
 
-a {
-  color: #00B7FF;
+.bg {
+    height: 100%;
+    width: 1%;
+    display: table-cell;
+    background: linear-gradient(90deg, #60D4A3 20%, rgba(0, 0, 0, 0) 0%), linear-gradient(90deg, #FFFFFF 80%, #60D4A3 0%);
+}
+
+header{
+    height: 20vh;
+    text-align: center;
+}
+
+h1{
+    padding-top: 30px;
+    font-size: 40px;
+}
+
+header button{
+    float: right;
+    border-radius: 30px;
+    background-color: #60D4A3;
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    margin-right: 250px;    
+    margin-bottom: 30px;
+}
+
+.grade-all{
+    height: 100vh;
+    
+}
+
+table{
+    margin: auto;
+}
+
+ .grade-all td{
+    padding: 80px;
+    font-size: 20px;
+    text-decoration: underline;
+    -webkit-text-decoration-color: #60D4A3;   
+    text-decoration-color:  #60D4A3;
+}
+
+h2{
+    font-size: 30px;
+    text-decoration: underline;
+    -webkit-text-decoration-color: #000000;   
+    text-decoration-color:  #000000;
+    margin-left: 400px;
+    padding: 50px;
+}
+
+.name{
+    height: 180vh;
+}
+
+.grade-all button{
+    float: right;
+    margin-right: 350px;    
+    display:block;
+    width:50px;
+    height:50px;
+    line-height:50px;
+    border-radius: 50%;
+    text-align:center;
+    text-decoration:none;
+    font-size:20px;
+    background-color: #60D4A3;
+    color: white;
+    
+}
+
+.name th{
+    font-size: 25px;
+    padding: 40px;
+}
+.name td{
+    padding: 40px;
+    font-size: 20px;
+    text-decoration: underline;
+    -webkit-text-decoration-color: #60D4A3;   
+    text-decoration-color:  #60D4A3;
+}
+
+footer{
+    text-align: center;
+    height: 50px;
+    font-size: 20px;
 }

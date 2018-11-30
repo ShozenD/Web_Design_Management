@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "aws-amplify": "^1.1.10",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
