@@ -7,7 +7,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config');
 var setupController = require('./controllers/setupController');
-var apiController = require('./controllers/apiController');
+var apiController = require('./controllers');
 
 // Initialize application instance
 var app = express();

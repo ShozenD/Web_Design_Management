@@ -21,7 +21,6 @@ module.exports = function(app){
 
     // Get class records by name
     app.get('/api/records/get_recs/:fnamekatakana-:lnamekatakana', cors(), function(req, res) {
-
         Records.find({ $and: [{first_katakana: req.params.fnamekatakana, last_katakana: req.params.lnamekatakana}] }, function(err, rec){
             if (err) {
                 res.send('Cannot Find Student');
@@ -32,6 +31,12 @@ module.exports = function(app){
     });
 
     // Get all studnet by grade
-    app.get('api/records/get_grade/:grade')
+    app.get('api/records/get_grade/:grade', cors(), function(req, res) {
+        Records.find({}, function(err, rec){
+            if (err) {
+                res
+            }
+        });
+    });
 };
     
