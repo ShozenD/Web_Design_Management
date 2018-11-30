@@ -32,10 +32,12 @@ module.exports = function(app){
 
     // Get all studnet by grade
     app.get('api/records/get_grade/:grade', cors(), function(req, res) {
-        Records.find({}, function(err, rec){
+        Records.find({ grade: req.params.grade }, function(err, rec){
             if (err) {
-                res
+                res.send('Error');
+                throw err;
             }
+            res.send(rec);
         });
     });
 };
