@@ -20,7 +20,7 @@ module.exports = function(app){
 
     // Get class records by name
     app.get('/api/records/get_recs/:fnamekatakana-:lnamekatakana', cors(), function(req, res) {
-        Records.find({ $and: [{first_katakana: req.params.fnamekatakana, last_katakana: req.params.lnamekatakana}] }, function(err, record){
+        Records.find({ $and: [{first_katakana: req.params.fnamekatakana}, {last_katakana: req.params.lnamekatakana}] }, function(err, record){
             if (err) {
                 res.send('Cannot Find Student');
                 throw err;
