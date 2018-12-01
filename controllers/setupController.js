@@ -1,4 +1,7 @@
-var Records = require('../models/recordsModel');
+var Homeworks = require('../models/homeworksModel');
+var Lectures = require('../models/lecturesModel');
+var Students = require('../models/studentsModel');
+var Teachers = require('../models/teachersModel');
 
 module.exports = function(app) {
     

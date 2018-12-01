@@ -11,7 +11,9 @@ var studentsSchema = new Schema({
     },
     school: String,
     grade: String,
-    teacher_id: ObjectId
+    teacher_id: { type: Schema.Types.ObjectId, ref: 'Teachers' },
+    homework_id: [{ type: Schema.Types.ObjectId, ref: 'Homeworks'}],
+    lecture_id: [{ type: Schema.Types.ObjectId, ref: 'Lectures'}]
 });
 
 module.exports = mongoose.model('Students', studentsSchema);
