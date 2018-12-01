@@ -2,7 +2,7 @@ mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var teachersSchema = new Schema({
+var teacherSchema = new Schema({
     name: {
         fnamekanji: String,
         lnamekanji: String,
@@ -10,7 +10,7 @@ var teachersSchema = new Schema({
         lnamekana: String
     },
     school: String,
-    students: [{ type: Schema.Types.ObjectId, ref='Students'}]
+    students: [{ type: Schema.Types.ObjectId, ref='Student'}]
 });
 
-module.exports = mongoose.model('Teachers', teachersSchema);
+module.exports = mongoose.model('Teacher', teacherSchema);
