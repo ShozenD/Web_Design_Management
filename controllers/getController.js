@@ -9,34 +9,34 @@ module.exports = function(app){
     // Get student info by name
     app.get('/api/records/:fnamekatakana-:lnamekatakana', function(req, res){
         Records.find({ $and: [{ first_katakana: req.params.fnamekatakana }, {last_katakana: req.params.lnamekatakana}] },
-            function(err, rec) {
+            function(err, record) {
                 if (err) {
                     res.send('Cannot Find Student');
                     throw err;
                 };
-                res.send(rec);
+                res.send(record);
             });
     });
 
     // Get class records by name
     app.get('/api/records/get_recs/:fnamekatakana-:lnamekatakana', cors(), function(req, res) {
-        Records.find({ $and: [{first_katakana: req.params.fnamekatakana, last_katakana: req.params.lnamekatakana}] }, function(err, rec){
+        Records.find({ $and: [{first_katakana: req.params.fnamekatakana, last_katakana: req.params.lnamekatakana}] }, function(err, record){
             if (err) {
                 res.send('Cannot Find Student');
                 throw err;
             }
-            res.send(rec[0].comments);
+            res.send(record[0].comments);
         });
     });
 
     // Get all studnet by grade
     app.get('api/records/get_grade/:grade', cors(), function(req, res) {
-        Records.find({ grade: req.params.grade }, function(err, rec){
+        Records.find({ grade: req.params.grade }, function(err, record){
             if (err) {
                 res.send('Error');
                 throw err;
             }
-            res.send(rec);
+            res.send(record);
         });
     });
 

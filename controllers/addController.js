@@ -42,16 +42,4 @@ module.exports = function(app){
             res.send('Success');
         });
     });
-
-    // Get student info by name
-    app.get('/api/records/:fnamekatakana-:lnamekatakana', function(req, res){
-        Records.find({ $and: [{ first_katakana: req.params.fnamekatakana }, {last_katakana: req.params.lnamekatakana}] },
-            function(err, rec) {
-                if (err) {
-                    res.send('Cannot Find Student');
-                    throw err;
-                };
-                res.send(rec);
-            });
-    });
 }
