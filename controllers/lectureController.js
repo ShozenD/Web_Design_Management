@@ -1,7 +1,7 @@
 Lecture = require('../models/lectureModel');
 
 const LectureController = {
-    save: function(params, cb) {
+    add: function(params, cb) {
         // Give a Lecture
         console.log("lectureController save method called");
 

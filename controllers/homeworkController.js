@@ -1,7 +1,7 @@
 Homework = require('../models/homeworkModel');
 
 const HomeworkController = {
-    save: function(params, cb) {
+    add: function(params, cb) {
         // Give a homework
         console.log("homeworkController give method called");
 

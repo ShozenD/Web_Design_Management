@@ -17,7 +17,7 @@ router.get('/api/init-db', function(req, res){
     var teacher_id;
     var student_id;
     
-    teacherController.save(params, (err, saved) => {
+    teacherController.add(params, (err, saved) => {
         if (err){
             console.log('Error: ', err);
             return res.sendStatus(500).send(err);
@@ -36,7 +36,7 @@ router.get('/api/init-db', function(req, res){
             teacher_id: teacher_id
         }
 
-        studentController.save(params, (err, saved) => {
+        studentController.add(params, (err, saved) => {
             if (err){
                 console.log('Error: ', err);
                 return res.sendStatus(500).send(err);
@@ -53,7 +53,7 @@ router.get('/api/init-db', function(req, res){
                 comments: '理解に苦しんでいるので次回また復習しなければいけません。'
             }
 
-            lectureController.save(params, (err, saved) => {
+            lectureController.add(params, (err, saved) => {
                 if (err){
                     console.log('Error: ', err);
                     return res.sendStatus(500).send(err);
@@ -73,7 +73,7 @@ router.get('/api/init-db', function(req, res){
                     evaluation: 5
                 }
 
-                homeworkController.save(params, (err, saved) => {
+                homeworkController.add(params, (err, saved) => {
                     if (err){
                         console.log('Error: ', err);
                         return res.sendStatus(500).send(err);

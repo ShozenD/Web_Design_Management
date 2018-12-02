@@ -3,7 +3,7 @@ Util = require('../util');
 
 const StudentController = {
     // Create new student
-    save: function(params, cb) {
+    add: function(params, cb) {
         var student = new Student(params);
         student.save(function (err, saved_student) {
             if (err) return cb(err);

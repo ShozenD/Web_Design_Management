@@ -1,7 +1,7 @@
 Teacher = require('../models/teacherModel');
 
 const TeacherController = {
-    save: function(params, cb) {
+    add: function(params, cb) {
         // Create a teacher
         console.log("teacherController saved called");
         
