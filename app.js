@@ -10,6 +10,9 @@ var config = require('./config');
 // var setupController = require('./controllers/setupController');
 // var apiController = require('./controllers');
 
+// Routing
+const routes = require('./routes');
+
 // Initialize application instance
 var app = express();
 app.use(bodyParser.json());
@@ -17,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS(security)
 app.use(cors());
+
+app.use('/', routes);
 
 // MongoDB setup
 mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
@@ -50,10 +55,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send({error: err});
 });
-
-// Routing
-require('./routes')(app);
 
 module.exports = app;
