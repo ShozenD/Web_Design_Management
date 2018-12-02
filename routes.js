@@ -109,5 +109,16 @@ router.get('/api/students/:id', (req, res) => {
     });
 });
 
+// add student
+router.post('/api/students', (req, res) => {
+    studentController.add(req.body, (err, saved) => {
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(saved);
+    });
+});
+
 module.exports = router; 
 
