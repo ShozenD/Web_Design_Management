@@ -1,4 +1,5 @@
 Student = require('../models/studentModel');
+Util = require('../util');
 
 const StudentController = {
     // Create new student
@@ -10,12 +11,24 @@ const StudentController = {
         });
     },
 
-    // Recieve a list of students
+    // Recieve an index of students
     index: function(params, cb) {
-        Student.find(params, (err, index) => {
-            if (err) return cb(err);
-            cb(null, index);
-        });
+        let legal_params = [
+            "fnamekanji", 
+            "fnamekana",
+            "lnamekanji",
+            "lnamekana",
+            "teacher_id",
+            "school",
+            "grade"
+        ];
+
+        filtered_params = Util.obj_filter(params, legal_params);
+      
+        //Student.find(params, (err, index) => {
+          //  if (err) return cb(err);
+          //  cb(null, index);
+        //});
     }
 }
 

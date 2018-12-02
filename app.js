@@ -13,6 +13,11 @@ const routes = require('./routes');
 
 // Initialize application instance
 var app = express();
+
+var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+var logger_format = `:date[${timezone}] ${config.app_name}[${process.pid}] :remote-addr - :remote-user ":method :url " :status :res[content-length] ":referrer" ":user-agent"`;
+app.use(logger(logger_format));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -31,7 +36,7 @@ app.get('/', function(req, res){
   res.sendFile('./views/index.html');
 });
 
-app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

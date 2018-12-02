@@ -8,12 +8,10 @@ const router = express.Router();
 // Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){
     var params = {
-        name: {
-            fnamekanji: '花子',
-            lnamekanji: '慶応',
-            fnamekana: 'ハナコ',
-            lnamekana: 'ケイオウ'
-        },
+        fnamekanji: '花子',
+        lnamekanji: '慶応',
+        fnamekana: 'ハナコ',
+        lnamekana: 'ケイオウ',
         school: '慶應義塾大学'
     }
     var teacher_id;
@@ -29,12 +27,10 @@ router.get('/api/init-db', function(req, res){
 
         // Add a student
         var params = {
-            name: {
-                fnamekanji: '太郎',
-                lnamekanji: '慶応',
-                fnamekana: 'タロウ',
-                lnamekana: 'ケイオウ'
-            },
+            fnamekanji: '太郎',
+            lnamekanji: '慶応',
+            fnamekana: 'タロウ',
+            lnamekana: 'ケイオウ',
             school: '慶應義塾湘南藤沢高校',
             grade: 'm2',
             teacher_id: teacher_id
@@ -88,6 +84,19 @@ router.get('/api/init-db', function(req, res){
             });
         });
     });
+});
+
+// get student index
+router.get('/api/students/', (req, res) => {
+    const params = req.query;
+    studentController.index(params, (err, result) => {
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });
+    
 });
 
 module.exports = router; 
