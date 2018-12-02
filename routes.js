@@ -1,6 +1,7 @@
 const teacherController = require('./controllers/teacherController');
 const studentController = require('./controllers/studentController');
 const lectureController = require('./controllers/lectureController');
+const homeworkController = require('./controllers/homeworkController');
 const express = require('express');
 const router = express.Router();
 
@@ -61,7 +62,28 @@ router.get('/api/init-db', function(req, res){
                     return res.sendStatus(500).send(err);
                 }
                 console.log('Saved Lecture: ', saved);
-                res.send(saved);
+                var lecture_id = saved._id;
+
+                // Add a homework
+                var params = {
+                    student_id: student_id,
+                    teacher_id: teacher_id,
+                    lecture_id: lecture_id,
+                    title: 'データベースの復習',
+                    date: Date.now(),
+                    details: 'データベースモデルの勉強と復習を行うこと',
+                    deadline: Date.now(),
+                    evaluation: 5
+                }
+
+                homeworkController.save(params, (err, saved) => {
+                    if (err){
+                        console.log('Error: ', err);
+                        return res.sendStatus(500).send(err);
+                    }
+                    console.log('Saved Homework: ', saved);
+                    res.send(saved);
+                });
             });
         });
     });
