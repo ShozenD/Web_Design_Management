@@ -100,7 +100,7 @@ router.get('/api/students/', (req, res) => {
 
 // get student by id
 router.get('/api/students/:id', (req, res) => {
-    studentController.id(req.params, (err, result) => {
+    studentController.id(req.params.id, (err, result) => {
         if (err) {
             console.log('Error: ', err);
             return res.sendStatus(400).send(err);
@@ -113,10 +113,23 @@ router.get('/api/students/:id', (req, res) => {
 router.post('/api/students', (req, res) => {
     studentController.add(req.body, (err, saved) => {
         if (err) {
-            console.log('Error: ', err);
+            console.log('Error: ', err); 
             return res.sendStatus(500).send(err);
         }
         res.send(saved);
+    });
+});
+
+// update student info 
+router.post('/api/students/:id/update', (req, res) => {
+    console.log(req.params.id);
+    studentController.update(req.params.id, req.body, (err, update) => {
+        console.log(req.params.id);
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(update);
     });
 });
 

@@ -4,7 +4,6 @@ Util = require('../util');
 const StudentController = {
     // Create new student
     add: function(params, cb) {
-        console.log('=========StudentController#add')
         var student = new Student(params);
         
         student.save(function (err, saved_student) {
@@ -32,13 +31,21 @@ const StudentController = {
     },
 
     // Obtain students by id
-    id: (params, cb) => {
-        const query = { _id: params }
-        Student.find(query, (err, student) => {
+    id: (id, cb) => {
+        Student.findById(id, (err, student) => {
             if(err) return cb(err);
             cb(null, student);
         });
-    }
+    },
+
+    // Find student by id and update
+    update: (id, params, cb) => {
+        const options = {new: true}
+        Student.findByIdAndUpdate(id, params, options, (err, update) => {
+            if(err) return cb(err);
+            cb(null, update);
+        })
+    } 
 }
 
 module.exports = StudentController;
