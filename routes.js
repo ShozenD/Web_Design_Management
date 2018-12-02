@@ -5,6 +5,7 @@ const homeworkController = require('./controllers/homeworkController');
 const express = require('express');
 const router = express.Router();
 
+// Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){
     var params = {
         name: {

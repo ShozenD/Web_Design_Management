@@ -1,17 +1,20 @@
 Student = require('../models/studentModel');
 
 const StudentController = {
+    // Create new student
     save: function(params, cb) {
-        // Create a student
-        console.log("studentController save method called");
-
         var student = new Student(params);
-
-        console.log("studenet: ", student);
-
         student.save(function (err, saved_student) {
             if (err) return cb(err);
             cb(null, saved_student);
+        });
+    },
+
+    // Recieve a list of students
+    index: function(params, cb) {
+        Student.find(params, (err, index) => {
+            if (err) return cb(err);
+            cb(null, index);
         });
     }
 }
