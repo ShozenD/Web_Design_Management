@@ -9,8 +9,7 @@ var teacherSchema = new Schema({
         fnamekana: String,
         lnamekana: String
     },
-    school: String,
-    students: [{ type: Schema.Types.ObjectId, ref: 'Student'}]
+    school: String
 });
 
 module.exports = mongoose.model('Teacher', teacherSchema);

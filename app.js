@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config');
-// var setupController = require('./controllers/setupController');
-// var apiController = require('./controllers');
 
 // Routing
 const routes = require('./routes');
@@ -25,10 +23,6 @@ app.use('/', routes);
 
 // MongoDB setup
 mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
-
-// Controller
-// setupController(app);
-// apiController(app);
 
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));
