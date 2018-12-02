@@ -39,7 +39,5 @@ module.exports = function(app){
             res.send(record);
         });
     });
-    
-
 };
     

@@ -1,16 +1,19 @@
 var createError = require('http-errors');
 var express = require('express');
+var bodyParser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config');
-var setupController = require('./controllers/setupController');
-var apiController = require('./controllers');
+// var setupController = require('./controllers/setupController');
+// var apiController = require('./controllers');
 
 // Initialize application instance
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS(security)
 app.use(cors());
@@ -19,8 +22,8 @@ app.use(cors());
 mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
 
 // Controller
-setupController(app);
-apiController(app);
+// setupController(app);
+// apiController(app);
 
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -49,5 +52,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Routing
+require('./routes')(app);
 
 module.exports = app;
