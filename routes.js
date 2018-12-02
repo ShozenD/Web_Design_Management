@@ -96,7 +96,17 @@ router.get('/api/students/', (req, res) => {
         }
         res.send(result);
     });
-    
+});
+
+// get student by id
+router.get('/api/students/:id', (req, res) => {
+    studentController.id(req.params, (err, result) => {
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });
 });
 
 module.exports = router; 
