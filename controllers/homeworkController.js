@@ -13,6 +13,20 @@ const HomeworkController = {
             if(err) return cb(err);
             cb(null, saved_homework);
         });
+    },
+
+    index: (params, cb) => {
+        const legal_params = [
+            'student_id',
+            'teacher_id',
+            'lecture_id',
+            'title',
+            'date'
+        ];
+        Homework.find(Util.obj_filter(params, legal_params), (err, index) => {
+            if (err) return cb(err);
+            cb(null, index);
+        });
     }
 }
 

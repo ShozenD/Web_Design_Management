@@ -14,15 +14,15 @@ const StudentController = {
     },
 
     // Obtain an index of students
-    index: function(params, cb) {
+    index: (params, cb) => {
         const legal_params = [
-            "fnamekanji", 
-            "fnamekana",
-            "lnamekanji",
-            "lnamekana",
-            "teacher_id",
-            "school",
-            "grade"
+            'fnamekanji',
+            'lnamekanji',
+            'fnamekana',
+            'lnamekana',
+            'school',
+            'grade',
+            'teacher_id'
         ];
         Student.find(Util.obj_filter(params, legal_params), (err, index) => {
             if (err) return cb(err);

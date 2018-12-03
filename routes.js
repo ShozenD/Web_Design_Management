@@ -122,7 +122,6 @@ router.post('/api/students', (req, res) => {
 
 // update student info 
 router.post('/api/students/:id/update', (req, res) => {
-    console.log(req.params.id);
     studentController.update(req.params.id, req.body, (err, update) => {
         console.log(req.params.id);
         if(err) {
@@ -130,6 +129,98 @@ router.post('/api/students/:id/update', (req, res) => {
             return res.sendStatus(500).send(err);
         }
         res.send(update);
+    });
+});
+
+// get teacher index
+router.get('/api/teachers', (req, res) => {
+    const params = req.query;
+    teacherController.index(params, (err, result) => {
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });
+});
+
+// get teacher by id
+router.get('/api/teachers/:id', (req, res) => {
+    teacherController.id(req.params.id, (err, result) => {
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });    
+});
+
+// add teacher
+router.post('/api/teachers', (req, res) => {
+    teacherController.add(req.body, (err, saved) => {
+        if(err) {
+            console.log('Error: ', err); 
+            return res.sendStatus(500).send(err);
+        }
+        res.send(saved);
+    });
+});
+
+// update teacher info 
+router.post('/api/teachers/:id/update', (req, res) => {
+    console.log(req.params.id);
+    teacherController.update(req.params.id, req.body, (err, update) => {
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(update);
+    });
+});
+
+// get lecture index
+router.get('/api/lectures', (req, res) => {
+    const params = req.query;
+    lectureController.index(params, (err, result) => {
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });
+});
+
+// add lectures
+router.post('/api/lectures', (req, res) => {
+    lectureController.add(req.body, (err, saved) => {
+        if(err) {
+            console.log('Error: ', err); 
+            return res.sendStatus(500).send(err);
+        }
+        res.send(saved);
+    });
+});
+
+// get homework index
+router.get('/api/homeworks', (req, res) => {
+    const params = req.query;
+    homeworkController.index(params, (err, result) => {
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });
+});
+
+// add homework
+router.post('/api/homeworks', (req, res) => {
+    homeworkController.add(req.body, (err, saved) => {
+        if(err){
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(saved);
     });
 });
 
