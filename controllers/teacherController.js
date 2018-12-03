@@ -1,6 +1,13 @@
 Teacher = require('../models/teacherModel');
 Util = require('../util');
 
+const legal_params = [
+    'fnamekanji',
+    'lnamekanji',
+    'fnamekana',
+    'lnamekana',
+    'school'
+];
 
 const TeacherController = {
     add: function(params, cb) {
@@ -19,19 +26,13 @@ const TeacherController = {
 
     // Obtain an index of teachers
     index: (params, cb) => {
-        const legal_params = [
-            'fnamekanji',
-            'lnamekanji',
-            'fnamekana',
-            'lnamekana',
-            'school'
-        ];
         Teacher.find(Util.obj_filter(params, legal_params), (err, index) => {
             if (err) return cb(err);
             cb(null, index);
         });
     },
 
+    // Obtain teacher by id
     id: (id, cb) => {
         Teacher.findById(id, (err, teacher) => {
             if(err) return cb(err);
@@ -42,7 +43,7 @@ const TeacherController = {
     // Find teacher by id and update
     update: (id, params, cb) => {
         const options = {new: true}
-        Teacher.findByIdAndUpdate(id, params, options, (err, update) => {
+        Teacher.findByIdAndUpdate(id, Util.obj_filter(params, legal_params), options, (err, update) => {
             if(err) return cb(err);
             cb(null, update);
         })

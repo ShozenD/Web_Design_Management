@@ -1,6 +1,16 @@
 Student = require('../models/studentModel');
 Util = require('../util');
 
+const legal_params = [
+    'fnamekanji',
+    'lnamekanji',
+    'fnamekana',
+    'lnamekana',
+    'school',
+    'grade',
+    'teacher_id'
+];
+
 const StudentController = {
     // Create new student
     add: function(params, cb) {
@@ -15,15 +25,7 @@ const StudentController = {
 
     // Obtain an index of students
     index: (params, cb) => {
-        const legal_params = [
-            'fnamekanji',
-            'lnamekanji',
-            'fnamekana',
-            'lnamekana',
-            'school',
-            'grade',
-            'teacher_id'
-        ];
+
         Student.find(Util.obj_filter(params, legal_params), (err, index) => {
             if (err) return cb(err);
             cb(null, index);
@@ -41,7 +43,7 @@ const StudentController = {
     // Find student by id and update
     update: (id, params, cb) => {
         const options = {new: true}
-        Student.findByIdAndUpdate(id, params, options, (err, update) => {
+        Student.findByIdAndUpdate(id, Util.obj_filter(params, legal_params), options, (err, update) => {
             if(err) return cb(err);
             cb(null, update);
         })

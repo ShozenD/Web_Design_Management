@@ -1,5 +1,13 @@
 Homework = require('../models/homeworkModel');
 
+const legal_params = [
+    'student_id',
+    'teacher_id',
+    'lecture_id',
+    'title',
+    'date'
+];
+
 const HomeworkController = {
     add: function(params, cb) {
         // Give a homework
@@ -15,19 +23,30 @@ const HomeworkController = {
         });
     },
 
+    // Obtain Homework by id
+    id: (id, cb) => {
+        Homework.findById(id, (err, student) => {
+            if(err) return cb(err);
+            cb(null, student);
+        });
+    },
+
+    // Obtain a list of Homeworks
     index: (params, cb) => {
-        const legal_params = [
-            'student_id',
-            'teacher_id',
-            'lecture_id',
-            'title',
-            'date'
-        ];
         Homework.find(Util.obj_filter(params, legal_params), (err, index) => {
             if (err) return cb(err);
             cb(null, index);
         });
-    }
+    },
+    
+    // Find homework by id and update
+    update: (id, params, cb) => {
+        const options = {new: true}
+        Homework.findByIdAndUpdate(id, Util.obj_filter(params, legal_params), options, (err, update) => {
+            if(err) return cb(err);
+            cb(null, update);
+        })
+    } 
 }
 
 module.exports = HomeworkController;

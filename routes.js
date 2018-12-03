@@ -86,6 +86,7 @@ router.get('/api/init-db', function(req, res){
     });
 });
 
+//// Student API ////
 // get student index
 router.get('/api/students/', (req, res) => {
     const params = req.query;
@@ -132,6 +133,7 @@ router.post('/api/students/:id/update', (req, res) => {
     });
 });
 
+//// Teacher API ////
 // get teacher index
 router.get('/api/teachers', (req, res) => {
     const params = req.query;
@@ -178,6 +180,7 @@ router.post('/api/teachers/:id/update', (req, res) => {
     });
 });
 
+//// Lecture API ////
 // get lecture index
 router.get('/api/lectures', (req, res) => {
     const params = req.query;
@@ -188,6 +191,17 @@ router.get('/api/lectures', (req, res) => {
         }
         res.send(result);
     });
+});
+
+// get lecture by id
+router.get('/api/lectures/:id', (req, res) => {
+    lectureController.id(req.params.id, (err, result) => {
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });    
 });
 
 // add lectures
@@ -201,6 +215,19 @@ router.post('/api/lectures', (req, res) => {
     });
 });
 
+// update lecture info 
+router.post('/api/lectures/:id/update', (req, res) => {
+    console.log(req.params.id);
+    lectureController.update(req.params.id, req.body, (err, update) => {
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(update);
+    });
+});
+
+//// Homework API ////
 // get homework index
 router.get('/api/homeworks', (req, res) => {
     const params = req.query;
@@ -213,6 +240,17 @@ router.get('/api/homeworks', (req, res) => {
     });
 });
 
+// get homework by id
+router.get('/api/homeworks/:id', (req, res) => {
+    homeworkController.id(req.params.id, (err, result) => {
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.send(result);
+    });    
+});
+
 // add homework
 router.post('/api/homeworks', (req, res) => {
     homeworkController.add(req.body, (err, saved) => {
@@ -221,6 +259,18 @@ router.post('/api/homeworks', (req, res) => {
             return res.sendStatus(500).send(err);
         }
         res.send(saved);
+    });
+});
+
+//update homework
+router.post('/api/teachers/:id/update', (req, res) => {
+    console.log(req.params.id);
+    homeworkController.update(req.params.id, req.body, (err, update) => {
+        if(err) {
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(update);
     });
 });
 
