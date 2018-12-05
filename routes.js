@@ -263,7 +263,7 @@ router.post('/api/homeworks', (req, res) => {
 });
 
 //update homework
-router.post('/api/teachers/:id/update', (req, res) => {
+router.post('/api/homeworks/:id/update', (req, res) => {
     console.log(req.params.id);
     homeworkController.update(req.params.id, req.body, (err, update) => {
         if(err) {
