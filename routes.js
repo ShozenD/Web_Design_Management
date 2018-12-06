@@ -5,6 +5,13 @@ const homeworkController = require('./controllers/homeworkController');
 const express = require('express');
 const router = express.Router();
 
+///// routes for the view engine
+// Front Page
+router.get('/', (req, res)=>{
+    res.render('index', {title: '生徒管理システム', message: 'トップページです'});
+});
+
+
 // Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){
     var params = {
