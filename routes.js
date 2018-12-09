@@ -2,15 +2,26 @@ const teacherController = require('./controllers/teacherController');
 const studentController = require('./controllers/studentController');
 const lectureController = require('./controllers/lectureController');
 const homeworkController = require('./controllers/homeworkController');
+const authController = require('./controllers/authController');
 const express = require('express');
 const router = express.Router();
 
 ///// routes for the view engine
 // Front Page
 router.get('/', (req, res)=>{
-    res.render('index', {title: '生徒管理システム', message: 'トップページです'});
+    res.render('login', {title: '生徒管理システム', message: 'トップページです'});
 });
 
+router.get('/register', (req, res)=>{
+    res.render('register'); 
+});
+
+router.post('/login', (req, res)=>{
+    var user = req.body
+    authController.login(user, (result)=>{
+        res.send(result);
+    });
+});
 
 // Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){
@@ -90,6 +101,20 @@ router.get('/api/init-db', function(req, res){
                 });
             });
         });
+    });
+});
+
+//// User API ////
+// Add User
+router.post('/api/users/', (req, res)=>{
+    console.log('Create user API called');
+    const params = req.body;
+    authController.create(params, (err, result)=>{
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(500).send(err);
+        }
+        res.send(result);
     });
 });
 

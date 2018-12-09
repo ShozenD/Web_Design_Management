@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config');
+var session = require('express-session');
 
 // Routing
 const routes = require('./routes');
@@ -22,6 +23,13 @@ app.use(logger(logger_format));
 // Enable CORS(security)
 app.use(cors());
 
+// Use sessions for tracking logins 
+app.use(session({
+  secret: 'work hard',
+  resave: false,
+  saveUninitialized: false 
+}));
+
 // Setting up body-parser here so it doesn't have to be set up in routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,9 +41,10 @@ app.use('/', routes);
 mongoose.connect(config.getDbConnctionString(), {useNewUrlParser: true});
 
 // Setting up the view engine and linking view files
-app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'pug');
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

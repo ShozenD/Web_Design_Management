@@ -1,0 +1,31 @@
+div.login-form
+    p.explanation-text User Name: 
+        input#username(type='text', placeholder='username')
+    p.explanation-text Password: 
+        input#password(type='text', placeholder='password')
+    input.login-button(type='button', value='Sign In', onclick='login();')
+    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js")
+    script.
+        function login(){
+            // Create Login Object
+            var login_info = {
+                username: $('#username'),
+                password: $('#password')
+            }
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "localhost:3000/login",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "processData": false,
+                "data": JSON.stringify(login_info)
+            }
+
+            $.ajax(settings).done(function (response){
+                console.log(response);
+            });
+
+        }
