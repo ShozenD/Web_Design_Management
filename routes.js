@@ -16,7 +16,7 @@ router.get('/register', (req, res)=>{
     res.render('register'); 
 });
 
-router.post('/login', (req, res)=>{
+router.post('/api/login', (req, res)=>{
     var user = req.body
     authController.login(user, (result)=>{
         res.send(result);
