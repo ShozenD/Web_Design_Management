@@ -7,7 +7,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config');
-var session = require('express-session');
 
 // Routing
 const routes = require('./routes');
@@ -22,13 +21,6 @@ app.use(logger(logger_format));
 
 // Enable CORS(security)
 app.use(cors());
-
-// Use sessions for tracking logins 
-app.use(session({
-  secret: 'work hard',
-  resave: false,
-  saveUninitialized: false 
-}));
 
 // Setting up body-parser here so it doesn't have to be set up in routes
 app.use(bodyParser.json());

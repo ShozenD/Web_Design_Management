@@ -2,24 +2,26 @@ const teacherController = require('./controllers/teacherController');
 const studentController = require('./controllers/studentController');
 const lectureController = require('./controllers/lectureController');
 const homeworkController = require('./controllers/homeworkController');
-const authController = require('./controllers/authController');
+const authController = require('./controllers/userController');
+const passport = require('./passport');
 const express = require('express');
 const router = express.Router();
 
 ///// routes for the view engine
 // Front Page
 router.get('/', (req, res)=>{
-    res.render('login', {title: '生徒管理システム', message: 'トップページです'});
+    res.render('index', {title: '生徒管理システム', message: 'トップページです'});
 });
 
 router.get('/register', (req, res)=>{
     res.render('register'); 
 });
 
-router.post('/api/login', (req, res)=>{
-    var user = req.body
-    authController.login(user, (result)=>{
-        res.send(result);
+router.post('/login', (req, res)=>{
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true 
     });
 });
 
