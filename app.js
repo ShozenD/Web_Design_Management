@@ -8,11 +8,46 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var config = require('./config');
 
-// Routing
-const routes = require('./routes');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 // Initialize application instance
 var app = express();
+
+// Session Middleware Setup
+app.use(session({ resave:false, saveUninitialized:false, secret:'passport test' }));
+
+// ===== Passport Setup =====
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password',
+  passReqToCallback: true,
+  session: true
+},function (req, username, password, done){
+  process.nextTick(function(){
+    if (username === 'test' && password === 'test' ){
+      return done(null, username);
+    } else {
+      console.log('login error');
+      return done(null, false, {message: 'パスワードが正しくありません。'});
+    }
+  });
+}));
+
+passport.serializeUser(function (user, done){
+  done(null, user);
+});
+
+passport.deserializeUser(function (user, done){
+  done(null, user);
+})
+// ===== end of Passport Setup =====
+
+// Routing
+const routes = require('./routes');
 
 // Setting the logger
 var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;

@@ -9,21 +9,24 @@ const router = express.Router();
 
 ///// routes for the view engine
 // Front Page
-router.get('/', (req, res)=>{
-    res.render('index', {title: '生徒管理システム', message: 'トップページです'});
+router.get('/', (req, res, next)=>{
+    res.render('index', { user: req.user });
 });
 
-router.get('/register', (req, res)=>{
-    res.render('register'); 
+router.get('/login', (req, res)=>{
+    res.render('login', { user: req.user }); 
 });
 
-router.post('/login', (req, res)=>{
-    passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true 
-    });
-});
+}));
+
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+})
 
 // Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){

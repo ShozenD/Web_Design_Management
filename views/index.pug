@@ -2,9 +2,14 @@ doctype html
 html
     head
         meta(charset='utf-8')
-        title= title
     body
         include components/Header
-        include components/loginForm
+        if (!user)
+            a(href="/login") Login
+            br
+        
+        if (user)
+            p こんにちは #{user} さん
+            a(href='/logout') Logout
 
     include components/Footer

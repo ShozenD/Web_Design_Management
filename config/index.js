@@ -1,6 +1,4 @@
 var configValues = require('./config');
-var passportConfig = require('./passport');
-var session = require("express-session")
 
 module.exports = {
 

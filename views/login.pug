@@ -1,13 +1,18 @@
 doctype html
 
 block content
-    form(action="/login" method="post")
-    div
-        label Username: 
-        input(type="text" name="username")
-    div
-        label Password: 
-        input(type="password" name="password")
-    div
-        input(type="submit" value="Log In")
+    .container 
+        h1 Login Page 
+        p.lead デモ用のログインページです
+        br
+        form(role='form', action="/login",method="post", style='max-width: 300px;')
+            .form-group
+                input.form-control(type='text', name="username", placeholder='Enter Username')
+            .form-group
+                input.form-control(type='password', name="password", placeholder='Password')
+            button.btn.btn-default(type='submit') Submit
+            &nbsp;
+            a(href='/')
+                button.btn.btn-primary(type="button") Cancel
+
 

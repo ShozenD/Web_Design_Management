@@ -1,5 +1,4 @@
 var User = require('../models/userModel');
-var passport = require()
 
 const authController = {
     // Create New User
