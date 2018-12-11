@@ -3,7 +3,7 @@ const studentController = require('./controllers/studentController');
 const lectureController = require('./controllers/lectureController');
 const homeworkController = require('./controllers/homeworkController');
 const authController = require('./controllers/userController');
-const passport = require('./passport');
+const passport = require('passport');
 const express = require('express');
 const router = express.Router();
 
