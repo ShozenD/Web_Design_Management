@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .container
+        h1 Home
+        if (!user)
+            a(href="/login") Login
+            br
+        
+        if (user)
+            p こんにちは #{user} さん
+            a(href='/logout') Logout
+            .container
+                .row
+                    .col-sm 
+                        h3 高校生
+                    .col-sm 
+                        h3 中学生
+                .row
+                    .col-sm 
+                        h3 小学生
+                    .col-sm 
+                        h3 大学生
+
+        footer グローバル英語専門塾

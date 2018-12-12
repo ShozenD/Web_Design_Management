@@ -1,25 +1,46 @@
 extends layout
 
+mixin student_list(grade, index)
+    .container
+        each val in index
+            if(val.grade===grade)
+                a(href='/students/' + val._id)= val.lnamekanji + ' ' + val.fnamekanji 
+                br
+
 block content
     .container
-        h1 Home
-        if (!user)
-            a(href="/login") Login
-            br
-        
-        if (user)
-            p こんにちは #{user} さん
-            a(href='/logout') Logout
-            .container
-                .row
-                    .col-sm 
-                        h3 高校生
-                    .col-sm 
-                        h3 中学生
-                .row
-                    .col-sm 
-                        h3 小学生
-                    .col-sm 
-                        h3 大学生
-
-        footer グローバル英語専門塾
+        h1 生徒一覧
+        p こんにちは #{user} さん
+        .container
+            .row
+                .col-sm
+                    h3 高校
+                    .container
+                        h4 一年
+                        +student_list('h1', index)
+                    .container
+                        h4 二年
+                        +student_list('h2', index)
+                    .container
+                        h4 三年
+                        +student_list('h3', index)
+                .col-sm
+                    h3 中学校
+                    .container
+                        h4 一年
+                        +student_list('m1', index)
+                    .container
+                        h4 二年
+                        +student_list('m2', index)
+                    .container
+                        h4 三年
+                        +student_list('m3', index)
+            .row
+                .col-sm
+                    h3 小学校
+                    +student_list('p', index)
+                .col-sm
+                    h3 大学
+                    +student_list('u', index)
+                
+        a(href='/logout') Logout

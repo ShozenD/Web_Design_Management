@@ -10,23 +10,62 @@ const router = express.Router();
 ///// routes for the view engine
 // Front Page
 router.get('/', (req, res, next)=>{
-    res.render('index', { user: req.user });
+    res.render('home', { user: req.user });
 });
 
+// Render Login Page
 router.get('/login', (req, res)=>{
     res.render('login', { user: req.user }); 
 });
 
+// Login Page
 router.post('/login', passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/index',
         failureRedirect: '/login',
         failureFlash: true 
 }));
 
+// Logout Page 
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 })
+
+// Render Index Page
+router.get('/index', function(req, res){
+    params=req.query
+    studentController.index(params, (err, index)=>{
+        res.render('index', { user: req.user, index: index });
+    });
+});
+
+// Render Student Page
+router.get('/students/:id', (req, res)=>{
+    studentController.id(req.params.id, (err, student)=>{
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        teacherController.id(student.teacher_id, (err, teacher)=>{
+            if (err) {
+                console.log('Error: ', err);
+                return res.sendStatus(400).send(err);
+            }
+            lectureController.index({ student_id: student._id }, (err, index)=>{
+                if (err) {
+                    console.log('Error: ', err);
+                    return res.sendStatus(400).send(err);
+                }
+                res.render('student', {student: student, teacher: teacher, lecture: index});
+            });
+        });
+    });
+});
+
+// Render Lecture Registering Page
+router.get('/lectures/:student_id-:teacher_id', (req, res)=>{
+    res.render('lecture', {student_id: req.params.student_id, teacher_id: req.params.teacher_id});
+});
 
 // Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){

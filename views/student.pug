@@ -1,0 +1,24 @@
+extends layout
+
+block content 
+    .container
+        h1 #{student.lnamekanji}  #{student.fnamekanji}
+        .container.basic-info
+            h3 基本情報
+            .container 
+                p ID: #{student._id}
+                p 学校: #{student.school}
+                p 学年: #{student.grade}
+                p 講師: #{teacher.lnamekanji} #{teacher.fnamekanji}
+        .container
+            h3 授業情報
+            each lec in lecture
+                .container(style={border: 'solid', margin: '5px'})
+                    p 日付:  #{lec.date}
+                    p 内容: #{lec.details}
+                    p コメント: #{lec.comments}
+        a(href='/lectures/' + student._id + '-' + teacher._id)
+            button.btn.btn-default(type='button') 追加
+        a(href='/index')
+            button.btn.btn-primary(type='button') 戻る
+    footer グローバル英語専門塾
