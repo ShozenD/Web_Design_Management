@@ -67,9 +67,15 @@ router.get('/lectures/:student_id-:teacher_id', (req, res)=>{
     res.render('lecture', {student_id: req.params.student_id, teacher_id: req.params.teacher_id});
 });
 
-// Render Add Student Page
+// Student Registering Form
 router.get('/students-add', (req, res)=>{
-    res.render('add_student');
+    teacherController.index(req.params, (err, index)=>{
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.render('addStudent', {teachers: index});
+    });
 });
 
 // Initialize Database (to be used only once)
@@ -198,7 +204,7 @@ router.post('/api/students', (req, res) => {
             console.log('Error: ', err); 
             return res.sendStatus(500).send(err);
         }
-        res.send(saved);
+        res.render('info', {title: '生徒が追加されました'});
     });
 });
 

@@ -5,25 +5,25 @@ block content
         h1 生徒追加
         p.lead 生徒情報を記入してください
         br
-        form(role='form', action="lectures/", method="post")
+        form(role='form', action="/api/students", method="post")
             .form-group
                 label(for='lanamekanji') 氏
-                input.form-control(type='text', id='lnamekanji', placeholder='last name')
+                input.form-control(type='text', name='lnamekanji', placeholder='last name')
             .form-group
                 label(for='fnamekanji') 名
-                input.form-control(type='text', id='fnamekanji', placeholder='first name')
+                input.form-control(type='text', name='fnamekanji', placeholder='first name')
             .form-group
                 label(for='lanamekana') シ
-                input.form-control(type='text', id='lnamekana', placeholder='last name')
+                input.form-control(type='text', name='lnamekana', placeholder='last name')
             .form-group
                 label(for='fnamekana') メイ
-                input.form-control(type='text', id='fnamekana', placeholder='first name')  
+                input.form-control(type='text', name='fnamekana', placeholder='first name')  
             .form-group
                 label(for='school') 学校名
-                input.form-control(type='text', id='school', placeholder='school name')
+                input.form-control(type='text', name='school', placeholder='school name')
             .form-group
-                label(for='comments') 学年
-                select.form-control(id='grade')
+                label(for='grade') 学年
+                select.form-control(name='grade')
                     option p
                     option m1
                     option m2 
@@ -34,8 +34,11 @@ block content
                     option u 
             .form-group
                 label(for='teacher') 担当講師
-                input.form-control(type='text', id='teacher', placeholder='Teacher')
+                select.form-control(name='teacher_id')
+                    each val in teachers
+                        option(value=val._id)= val.lnamekanji + ' ' + val.fnamekanji
             button.btn.btn-default(type='submit') 追加
             a(href='/index')
                 button.btn.btn-primary(type='button') 戻る
+
     footer グローバル英語専門塾
