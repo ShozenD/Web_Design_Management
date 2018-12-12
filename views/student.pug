@@ -17,7 +17,7 @@ block content
                     p 日付:  #{lec.date}
                     p 内容: #{lec.details}
                     p コメント: #{lec.comments}
-        a(href='/lectures/' + student._id + '-' + teacher._id)
+        a(href='/lectures/' + student._id)
             button.btn.btn-default(type='button') 追加
         a(href='/index')
             button.btn.btn-primary(type='button') 戻る

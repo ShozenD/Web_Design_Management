@@ -63,8 +63,20 @@ router.get('/students/:id', (req, res)=>{
 });
 
 // Render Lecture Registering Page
-router.get('/lectures/:student_id-:teacher_id', (req, res)=>{
-    res.render('lecture', {student_id: req.params.student_id, teacher_id: req.params.teacher_id});
+router.get('/lectures/:student_id', (req, res)=>{
+    studentController.id(req.params.student_id, (err, student)=>{
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        teacherController.index({}, (err, teacher_index)=>{
+            if (err) {
+                console.log('Error: ', err);
+                return res.sendStatus(400).send(err);
+            }
+            res.render('lecture', { student: student, teacher_index: teacher_index });
+        });  
+    });
 });
 
 // Student Registering Form
@@ -298,7 +310,7 @@ router.post('/api/lectures', (req, res) => {
             console.log('Error: ', err); 
             return res.sendStatus(500).send(err);
         }
-        res.send(saved);
+        res.render('info', {title: '授業情報が追加されました'});
     });
 });
 

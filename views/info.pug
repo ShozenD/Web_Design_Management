@@ -3,8 +3,5 @@ extends layout
 block content
     .container
         h1 #{title}
-        .container
-            each val, key in info
-                p= key + ': '  + val
         a(href='/index')
             button.btn.btn-primary(type='button') 戻る    

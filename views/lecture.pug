@@ -3,21 +3,26 @@ extends layout
 block content 
     .container
         h1 授業追加
-        p.lead 授業情報を記入してください
+        p.lead #{student.lnamekanji} #{student.fnamekanji} さんの授業情報を記入してください
         br
-        form(role='form', action="lectures/", method="post")
+        form(role='form', action="/api/lectures", method="post")
+            .form-group
+                lable(for='student') 生徒ID
+                input.form-control(type='text' readonly name='student_id' value=student._id)
+            .form-group
+                label(for='teacher') 講師
+                select.form-control(name='teacher_id')
+                    each teacher in teacher_index
+                        option(value=teacher._id)= teacher.lnamekanji + ' ' + teacher.fnamekanji
             .form-group
                 label(for='date') 日付
-                input.form-control(type='text', id='date', placeholder='DD/MM/YYYY')
+                input.form-control(type='text', name='date', placeholder='DD/MM/YYYY')
             .form-group
                 label(for='details') 授業詳細
-                textarea.form-control(type='text', id='details', placeholder='Details', rows="4")
+                textarea.form-control(type='text', name='details', placeholder='Details', rows="4")
             .form-group
                 label(for='comments') コメント
-                textarea.form-control(type='text', id='comments', placeholder='Comments', rows="4")
-            .form-group
-                label(for='hw') 宿題
-                textarea.form-control(type='text', id='hw', placeholder='Homework', rows="3")
+                textarea.form-control(type='text', name='comments', placeholder='Comments', rows="4")
             button.btn.btn-default(type='submit') 追加
             a(href='/students/' + student_id)
                 button.btn.btn-primary(type='button') 戻る
