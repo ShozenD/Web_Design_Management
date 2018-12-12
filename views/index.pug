@@ -42,5 +42,7 @@ block content
                 .col-sm
                     h3 大学
                     +student_list('u', index)
-                
-        a(href='/logout') Logout
+        a(href='/students-add') 
+            button.btn.btn-primary(type='button') 生徒追加
+        a(href='/logout') 
+            button.btn.btn-default(type='button') Logout

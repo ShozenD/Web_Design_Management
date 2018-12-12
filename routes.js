@@ -67,6 +67,11 @@ router.get('/lectures/:student_id-:teacher_id', (req, res)=>{
     res.render('lecture', {student_id: req.params.student_id, teacher_id: req.params.teacher_id});
 });
 
+// Render Add Student Page
+router.get('/students-add', (req, res)=>{
+    res.render('add_student');
+});
+
 // Initialize Database (to be used only once)
 router.get('/api/init-db', function(req, res){
     var params = {
