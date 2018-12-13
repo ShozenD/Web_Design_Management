@@ -46,7 +46,7 @@ router.get('/teachers', (req, res)=>{
             console.log('Error: ', err);
             return res.sendStatus(400).send(err);
         }
-        res.render('teacher_index', {teacher_index: index})
+        res.render('teacher/teacher_index', {teacher_index: index})
     });
 });
 
@@ -232,6 +232,23 @@ router.post('/api/students', (req, res) => {
 });
 
 // update student info 
+router.get('/api/students/:id/update', (req, res)=>{
+    studentController.id(req.params.id, (err, student)=>{
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        teacherController.index({}, (err, teacher_index)=>{
+            if (err) {
+                console.log('Error: ', err);
+                return res.sendStatus(400).send(err);
+            }
+            res.render('student/student_update', {student: student, teacher_index: teacher_index});
+        });
+    });
+});
+
+
 router.post('/api/students/:id/update', (req, res) => {
     studentController.update(req.params.id, req.body, (err, update) => {
         console.log(req.params.id);
@@ -239,7 +256,7 @@ router.post('/api/students/:id/update', (req, res) => {
             console.log('Error: ', err);
             return res.sendStatus(500).send(err);
         }
-        res.send(update);
+        res.render('info', {title: '生徒情報が更新されました'});
     });
 });
 

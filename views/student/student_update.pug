@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+    .container
+        include ../components/header
+        include ../components/navbar
+        h1 生徒情報更新
+        p.lead #{student.lnamekanji} #{student.fnamekanji} さんの情報を更新
+        br
+        form(role='form', action='/api/students/'+student._id+'/update', method='post')
+            .row
+                .col-sm
+                    .form-group
+                        label(for='lnamekanji') 氏
+                        input.form-control(type='text' name='lnamekanji' value=student.lnamekanji)
+                .col-sm
+                    .form-group
+                        label(for='fnamekanji') 名
+                        input.form-control(type='text' name='fnamekanji' value=student.fnamekanji)
+            .row
+                .col-sm
+                    .form-group
+                        label(for='lnamekanji') シ
+                        input.form-control(type='text' name='lnamekana' value=student.lnamekana)
+                .col-sm
+                    .form-group
+                        label(for='fnamekanji') メイ
+                        input.form-control(type='text' name='fnamekana' value=student.fnamekana)
+            .form-group
+                label(for='school') 学校名
+                input.form-control(type='text' name='school' value=student.school)
+            .form-group
+                label(for='grade') 学年
+                select.form-control(name='grade')
+                    option(value='p') 小学
+                    option(value='m1') 中1
+                    option(value='m2') 中2 
+                    option(value='m3') 中3
+                    option(value='h1') 高1
+                    option(value='h2') 高2
+                    option(value='h3') 高3
+                    option(value='u') 大学
+            .form-group
+                label(for='teacher') 担当講師
+                select.form-control(name='teacher_id')
+                    each val in teacher_index
+                        option(value=val._id)= val.lnamekanji + ' ' + val.fnamekanji
+            button.btn.btn-default(type='submit') 更新
+            a(href='/students' + student._id)
+                button.btn.btn-primary(type='button') 戻る
+        include ../components/footer

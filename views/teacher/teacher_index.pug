@@ -1,0 +1,17 @@
+extends ../layout
+mixin teacher_info(teacher)
+    .container.teacher-info
+        p.teacher-id= teacher._id
+        p.teacher-name= teacher.lnamekanji + ' ' + teacher.fnamekanji
+        p.teacher-school= teacher.school
+
+block content
+    include ../components/header
+    .container
+        include ../components/navbar
+        h1 講師一覧
+        each val in teacher_index
+            .row
+                +teacher_info(val)
+
+    include ../components/footer

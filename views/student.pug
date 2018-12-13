@@ -10,6 +10,8 @@ block content
                 p 学校: #{student.school}
                 p 学年: #{student.grade}
                 p 講師: #{teacher.lnamekanji} #{teacher.fnamekanji}
+            a(href='/api/students/'+student._id+'/update')
+                button.btn.btn-primary(type='button') 更新
         .container
             h3 授業情報
             each lec in lecture
