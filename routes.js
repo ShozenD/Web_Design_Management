@@ -39,6 +39,17 @@ router.get('/index', function(req, res){
     });
 });
 
+// Render Teachers Page
+router.get('/teachers', (req, res)=>{
+    teacherController.index({}, (err, index)=>{
+        if (err) {
+            console.log('Error: ', err);
+            return res.sendStatus(400).send(err);
+        }
+        res.render('teacher_index', {teacher_index: index})
+    });
+});
+
 // Render Student Page
 router.get('/students/:id', (req, res)=>{
     studentController.id(req.params.id, (err, student)=>{
