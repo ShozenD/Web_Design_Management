@@ -1,10 +1,12 @@
-extends layout
+extend layout
 
 block content 
     .container
         h1 #{student.lnamekanji}  #{student.fnamekanji}
         .container.basic-info
             h3 基本情報
+
+
             .container 
                 p ID: #{student._id}
                 p 学校: #{student.school}
@@ -23,4 +25,7 @@ block content
             button.btn.btn-default(type='button') 追加
         a(href='/index')
             button.btn.btn-primary(type='button') 戻る
-    footer グローバル英語専門塾
+ 
+    
+
+

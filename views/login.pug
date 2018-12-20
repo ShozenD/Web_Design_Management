@@ -1,7 +1,11 @@
-extends layout 
+
+head
+link(href='https://fonts.googleapis.com/css?family=Nunito:600', rel='stylesheet')
 
 block content
     .container 
+#box
+    .box
         h1 Login Page 
         p.lead デモ用のログインページです
         br
@@ -13,4 +17,33 @@ block content
             button.btn.btn-default(type='submit') Submit
             a(href='/')
                 button.btn.btn-primary(type="button") Cancel
-    footer グローバル英語専門塾
+footer グローバル英語専門塾
+    
+
+
+style.
+    body {
+    background-image: url("webdesignpic.png");
+    text-align: center;
+    background-position: cover;
+    font-family: 'Nunito', sans-serif;
+    
+    }
+    
+    p{
+    text-decoration: underline;
+    text-decoration-color: #00cf8d;
+    }
+    
+    .box{
+    background:white;
+  width:300px;
+  border-radius:25px;
+  margin: 0 auto 0 auto;
+  padding:0px 0px 70px 0px;
+  border: none; 
+  margin-top: 250px;
+  padding: 20px;
+    }
+    
+    
